@@ -1,0 +1,43 @@
+{
+  "$schema": "../schemas/score_contract.json",
+  "session_id": "550e8400-e29b-41d4-a716-446655440000",
+  "duration_sec": 180.5,
+  "metrics": {
+    "wpm": 165.3,
+    "filler_per_min": 4.2,
+    "pause_events": 12,
+    "power_pauses": 3,
+    "pitch_variance": 42.5,
+    "volume_stability": 0.25
+  },
+  "scores": {
+    "pace": 78,
+    "fluency": 65,
+    "clarity": 82,
+    "vocal_variety": 71,
+    "overall": 74
+  },
+  "focus_metric": "fluency",
+  "flags": [
+    {
+      "t_start": 12.5,
+      "t_end": 13.1,
+      "reason": "filler"
+    },
+    {
+      "t_start": 45.0,
+      "t_end": 47.5,
+      "reason": "long_pause"
+    },
+    {
+      "t_start": 89.2,
+      "t_end": 89.8,
+      "reason": "filler"
+    },
+    {
+      "t_start": 120.0,
+      "t_end": 122.5,
+      "reason": "power_pause"
+    }
+  ]
+}

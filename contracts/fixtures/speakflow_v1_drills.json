@@ -1,0 +1,261 @@
+{
+  "$schema": "../schemas/drill_schema.json",
+  "version": "1.0.0",
+  "drills": [
+    {
+      "drill_id": "drill_pace_metronome",
+      "name": "Metronome Pacing",
+      "zone": "pace",
+      "difficulty": "beginner",
+      "targets": ["wpm"],
+      "duration_sec": 120,
+      "instructions": "1. Set a metronome to 75 BPM (about 150 words/min). 2. Read a passage aloud, saying one word per beat. 3. Focus on matching the rhythm exactly, not rushing or dragging. 4. Repeat with different passages until the pace feels natural.",
+      "success_metric": "WPM within 140-160 range for 2+ minutes",
+      "failure_signals": ["Consistently ahead of the beat", "Falling behind and catching up in bursts", "Losing the rhythm entirely"],
+      "recommended_when": {
+        "score_below": 70,
+        "metric_threshold": {
+          "metric": "wpm",
+          "operator": "gt",
+          "value": 180
+        }
+      }
+    },
+    {
+      "drill_id": "drill_pace_slowdown",
+      "name": "Deliberate Slowdown",
+      "zone": "pace",
+      "difficulty": "beginner",
+      "targets": ["wpm"],
+      "duration_sec": 90,
+      "instructions": "1. Record yourself speaking normally for 30 seconds. 2. Play it back and note your natural pace. 3. Re-record the same content at half speed—exaggeratedly slow. 4. Record again at 75% of your original speed. This is likely your ideal pace.",
+      "success_metric": "Final recording is 20-30% slower than baseline",
+      "failure_signals": ["Speeding back up unconsciously", "Sounding robotic instead of natural", "Adding filler words to fill silence"],
+      "recommended_when": {
+        "score_below": 60,
+        "metric_threshold": {
+          "metric": "wpm",
+          "operator": "gt",
+          "value": 200
+        }
+      }
+    },
+    {
+      "drill_id": "drill_fluency_silence",
+      "name": "Embrace the Silence",
+      "zone": "fluency",
+      "difficulty": "beginner",
+      "targets": ["filler_per_min", "pause_events"],
+      "duration_sec": 180,
+      "instructions": "1. Choose a topic you can speak about for 3 minutes. 2. Speak aloud, but every time you feel an 'um' or 'uh' coming, STOP completely. 3. Hold the silence for a full 2 seconds. 4. Then continue. The goal is replacing fillers with intentional pauses.",
+      "success_metric": "Fewer than 3 filler words per minute",
+      "failure_signals": ["Rushing through silences", "Replacing 'um' with 'so' or 'like'", "Stopping mid-word"],
+      "recommended_when": {
+        "score_below": 70,
+        "metric_threshold": {
+          "metric": "filler_per_min",
+          "operator": "gt",
+          "value": 5
+        }
+      }
+    },
+    {
+      "drill_id": "drill_fluency_filler_jar",
+      "name": "Filler Word Jar",
+      "zone": "fluency",
+      "difficulty": "intermediate",
+      "targets": ["filler_per_min"],
+      "duration_sec": 300,
+      "instructions": "1. Place a jar and coins nearby. 2. Speak for 5 minutes on any topic. 3. Every time you say a filler word (um, uh, like, you know, basically), drop a coin in the jar. 4. Physical consequence builds awareness. Track your coin count over sessions.",
+      "success_metric": "Fewer than 10 coins in 5 minutes (< 2 fillers/min)",
+      "failure_signals": ["Not noticing fillers until after saying them", "Stopping speech to avoid coins instead of natural flow", "Getting frustrated and giving up"],
+      "recommended_when": {
+        "score_below": 60,
+        "metric_threshold": {
+          "metric": "filler_per_min",
+          "operator": "gt",
+          "value": 8
+        }
+      }
+    },
+    {
+      "drill_id": "drill_fluency_one_thought",
+      "name": "One Thought Per Breath",
+      "zone": "fluency",
+      "difficulty": "intermediate",
+      "targets": ["filler_per_min", "pause_events"],
+      "duration_sec": 180,
+      "instructions": "1. Take a breath. 2. Speak ONE complete thought—a single sentence. 3. Stop. Breathe. 4. Speak the next thought. 5. This rhythm prevents rambling and eliminates filler words used to 'hold the floor'.",
+      "success_metric": "Each thought is a complete sentence with no fillers",
+      "failure_signals": ["Running multiple sentences together", "Trailing off mid-thought", "Using 'and' to chain thoughts endlessly"],
+      "recommended_when": {
+        "score_below": 65,
+        "metric_threshold": {
+          "metric": "filler_per_min",
+          "operator": "gt",
+          "value": 6
+        }
+      }
+    },
+    {
+      "drill_id": "drill_clarity_articulation",
+      "name": "Over-Articulation",
+      "zone": "clarity",
+      "difficulty": "beginner",
+      "targets": ["volume_stability"],
+      "duration_sec": 120,
+      "instructions": "1. Choose a tongue-twister or complex passage. 2. Speak it at half speed, exaggerating every consonant and vowel. 3. Your mouth should feel like it's working hard. 4. Gradually increase speed while maintaining crisp articulation.",
+      "success_metric": "Every syllable is distinct even at normal speed",
+      "failure_signals": ["Mumbling returns as speed increases", "Jaw tension or discomfort", "Dropping word endings"],
+      "recommended_when": {
+        "score_below": 70
+      }
+    },
+    {
+      "drill_id": "drill_clarity_power_pause",
+      "name": "Power Pause Practice",
+      "zone": "clarity",
+      "difficulty": "intermediate",
+      "targets": ["power_pauses", "pause_events"],
+      "duration_sec": 180,
+      "instructions": "1. Prepare 3 key points you want to make. 2. State your first point. 3. PAUSE for a full 2-3 seconds (count in your head). 4. State your second point. Pause. 5. Continue. Power pauses emphasize importance and give listeners time to absorb.",
+      "success_metric": "At least 3 intentional 2+ second pauses per minute",
+      "failure_signals": ["Rushing through pauses", "Filling pauses with 'um' or 'so'", "Pauses that feel random rather than strategic"],
+      "recommended_when": {
+        "score_below": 65,
+        "metric_threshold": {
+          "metric": "power_pauses",
+          "operator": "lt",
+          "value": 2
+        }
+      }
+    },
+    {
+      "drill_id": "drill_vocal_pitch_range",
+      "name": "Pitch Range Expansion",
+      "zone": "vocal_variety",
+      "difficulty": "beginner",
+      "targets": ["pitch_variance"],
+      "duration_sec": 120,
+      "instructions": "1. Hum from your lowest comfortable note to your highest, like a siren. 2. Now read a sentence starting at your lowest pitch and ending at your highest. 3. Reverse: start high, end low. 4. Practice landing on different pitches for emphasis.",
+      "success_metric": "Noticeably wider pitch range in natural speech",
+      "failure_signals": ["Voice cracking from pushing too hard", "Sounding sing-song or unnatural", "Returning to monotone immediately"],
+      "recommended_when": {
+        "score_below": 70,
+        "metric_threshold": {
+          "metric": "pitch_variance",
+          "operator": "lt",
+          "value": 30
+        }
+      }
+    },
+    {
+      "drill_id": "drill_vocal_emphasis",
+      "name": "Word Emphasis Rotation",
+      "zone": "vocal_variety",
+      "difficulty": "intermediate",
+      "targets": ["pitch_variance", "volume_stability"],
+      "duration_sec": 150,
+      "instructions": "1. Take a simple sentence: 'I didn't say she stole the money.' 2. Say it 7 times, emphasizing a different word each time. 3. Notice how meaning changes with emphasis. 4. Apply this to your own content—find the key word in each sentence.",
+      "success_metric": "Clear meaning shifts based on emphasis choices",
+      "failure_signals": ["Emphasizing by shouting instead of pitch/pace change", "Multiple words emphasized equally", "Monotone delivery despite trying"],
+      "recommended_when": {
+        "score_below": 65,
+        "metric_threshold": {
+          "metric": "pitch_variance",
+          "operator": "lt",
+          "value": 25
+        }
+      }
+    },
+    {
+      "drill_id": "drill_vocal_volume_control",
+      "name": "Volume Dynamics",
+      "zone": "vocal_variety",
+      "difficulty": "intermediate",
+      "targets": ["volume_stability"],
+      "duration_sec": 120,
+      "instructions": "1. Read a paragraph at your normal volume. 2. Re-read it, but whisper the unimportant parts and project the key points. 3. The contrast creates engagement. 4. Practice finding 2-3 'loud moments' per minute of speech.",
+      "success_metric": "Intentional volume variation with 2-3 dynamic shifts per minute",
+      "failure_signals": ["Shouting instead of projecting", "Whispers that are inaudible", "Volume changes that feel random"],
+      "recommended_when": {
+        "score_below": 60,
+        "metric_threshold": {
+          "metric": "volume_stability",
+          "operator": "gt",
+          "value": 0.4
+        }
+      }
+    },
+    {
+      "drill_id": "drill_structure_three_points",
+      "name": "Rule of Three",
+      "zone": "structure",
+      "difficulty": "beginner",
+      "targets": ["pause_events", "power_pauses"],
+      "duration_sec": 180,
+      "instructions": "1. Pick any topic. 2. Structure your thoughts into exactly 3 points. 3. State: 'I want to cover three things: First... Second... Third...' 4. Deliver each point, pausing between them. 5. Conclude by restating all three briefly.",
+      "success_metric": "Clear three-part structure with transitions",
+      "failure_signals": ["Adding a fourth point", "Points that overlap or repeat", "Forgetting to number or signal transitions"],
+      "recommended_when": {
+        "score_below": 70
+      }
+    },
+    {
+      "drill_id": "drill_structure_headline",
+      "name": "Headline First",
+      "zone": "structure",
+      "difficulty": "intermediate",
+      "targets": ["pause_events"],
+      "duration_sec": 120,
+      "instructions": "1. Before explaining anything, state your conclusion first. 2. 'The bottom line is...' or 'My recommendation is...' 3. THEN provide supporting details. 4. This inverted pyramid keeps listeners oriented.",
+      "success_metric": "Main point delivered in first 10 seconds",
+      "failure_signals": ["Burying the lead in details", "Starting with 'So basically...' without a point", "Conclusion that contradicts the opening"],
+      "recommended_when": {
+        "score_below": 65
+      }
+    },
+    {
+      "drill_id": "drill_confidence_posture",
+      "name": "Power Posture Speaking",
+      "zone": "confidence",
+      "difficulty": "beginner",
+      "targets": ["volume_stability", "pitch_variance"],
+      "duration_sec": 120,
+      "instructions": "1. Stand with feet shoulder-width apart, shoulders back. 2. Hands at your sides or gesturing—never crossed or in pockets. 3. Speak for 2 minutes in this posture. 4. Notice how physical openness affects vocal confidence.",
+      "success_metric": "Maintained open posture throughout with no defensive positioning",
+      "failure_signals": ["Slouching back into closed posture", "Voice getting quieter", "Fidgeting or swaying"],
+      "recommended_when": {
+        "score_below": 70
+      }
+    },
+    {
+      "drill_id": "drill_confidence_eye_contact",
+      "name": "Triangle Eye Contact",
+      "zone": "confidence",
+      "difficulty": "intermediate",
+      "targets": ["volume_stability"],
+      "duration_sec": 180,
+      "instructions": "1. Place 3 objects in a triangle around the room. 2. Speak for 3 minutes, rotating eye contact between the three points. 3. Hold each gaze for a full sentence before moving. 4. This simulates audience engagement.",
+      "success_metric": "Smooth rotation between all three points with no darting",
+      "failure_signals": ["Looking at the floor or ceiling", "Rapid shifting between points", "Favoring one point over others"],
+      "recommended_when": {
+        "score_below": 65
+      }
+    },
+    {
+      "drill_id": "drill_confidence_record_review",
+      "name": "Record and Review",
+      "zone": "confidence",
+      "difficulty": "advanced",
+      "targets": ["wpm", "filler_per_min", "pitch_variance", "volume_stability"],
+      "duration_sec": 300,
+      "instructions": "1. Record a 2-minute speech on video. 2. Watch it back, noting: pace, fillers, posture, eye contact, energy. 3. Pick ONE thing to improve. 4. Re-record focusing only on that one thing. 5. Compare the two recordings.",
+      "success_metric": "Visible improvement in the targeted area between recordings",
+      "failure_signals": ["Trying to fix everything at once", "Being overly self-critical", "Not actually watching the recording"],
+      "recommended_when": {
+        "score_below": 75
+      }
+    }
+  ]
+}

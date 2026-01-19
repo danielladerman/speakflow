@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speakflow.dev/schemas/coaching_response.json",
+  "title": "SpeakFlow Coaching Response",
+  "description": "Schema for LLM-generated coaching output. LLM interprets scores and selects drills from library—never invents new drills or metrics.",
+  "type": "object",
+  "required": ["session_id", "summary", "strengths", "focus_area", "recommended_drills", "next_session_goal"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Links back to the scored session"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 50,
+      "maxLength": 500,
+      "description": "2-3 sentence overview of the session performance"
+    },
+    "strengths": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["area", "observation"],
+        "properties": {
+          "area": {
+            "type": "string",
+            "enum": ["pace", "fluency", "clarity", "vocal_variety", "structure", "confidence"],
+            "description": "Skill area showing strength"
+          },
+          "observation": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Specific observation about what went well"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Areas where the user performed well"
+    },
+    "focus_area": {
+      "type": "object",
+      "required": ["area", "current_score", "target_score", "observation", "impact"],
+      "properties": {
+        "area": {
+          "type": "string",
+          "enum": ["pace", "fluency", "clarity", "vocal_variety", "structure", "confidence"],
+          "description": "Primary area to focus on"
+        },
+        "current_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Current score in this area"
+        },
+        "target_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Achievable target for next session"
+        },
+        "observation": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Specific observation about what needs improvement"
+        },
+        "impact": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Why improving this area matters"
+        }
+      },
+      "additionalProperties": false
+    },
+    "recommended_drills": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["drill_id", "reason", "priority"],
+        "properties": {
+          "drill_id": {
+            "type": "string",
+            "pattern": "^drill_[a-z0-9_]+$",
+            "description": "Must reference an existing drill from the library"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Why this drill is recommended based on the scores"
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3,
+            "description": "Priority order (1 = most important)"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Drills selected from speakflow_v1 library"
+    },
+    "next_session_goal": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 200,
+      "description": "Specific, measurable goal for the next practice session"
+    }
+  },
+  "additionalProperties": false
+}

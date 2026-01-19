@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speakflow.dev/schemas/drill_schema.json",
+  "title": "SpeakFlow Drill Schema",
+  "description": "Schema for practice drills. LLM selects from library but never invents new drills.",
+  "type": "object",
+  "required": ["drill_id", "name", "zone", "difficulty", "targets", "duration_sec", "instructions", "success_metric", "failure_signals", "recommended_when"],
+  "properties": {
+    "drill_id": {
+      "type": "string",
+      "pattern": "^drill_[a-z0-9_]+$",
+      "description": "Unique identifier (e.g., drill_pace_metronome)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Human-readable drill name"
+    },
+    "zone": {
+      "type": "string",
+      "enum": ["pace", "fluency", "clarity", "vocal_variety", "structure", "confidence"],
+      "description": "Primary skill zone this drill targets"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"],
+      "description": "Difficulty level"
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["wpm", "filler_per_min", "pause_events", "power_pauses", "pitch_variance", "volume_stability"]
+      },
+      "description": "Metrics this drill aims to improve"
+    },
+    "duration_sec": {
+      "type": "integer",
+      "minimum": 30,
+      "maximum": 600,
+      "description": "Recommended drill duration in seconds"
+    },
+    "instructions": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Step-by-step instructions for the drill"
+    },
+    "success_metric": {
+      "type": "string",
+      "description": "How to measure if drill was performed correctly"
+    },
+    "failure_signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Signs the user is doing the drill incorrectly"
+    },
+    "recommended_when": {
+      "type": "object",
+      "description": "Conditions under which this drill should be suggested",
+      "properties": {
+        "score_below": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Suggest when zone score is below this threshold"
+        },
+        "metric_threshold": {
+          "type": "object",
+          "description": "Metric-specific thresholds",
+          "properties": {
+            "metric": {
+              "type": "string",
+              "enum": ["wpm", "filler_per_min", "pause_events", "power_pauses", "pitch_variance", "volume_stability"]
+            },
+            "operator": {
+              "type": "string",
+              "enum": ["gt", "lt", "gte", "lte"]
+            },
+            "value": {
+              "type": "number"
+            }
+          },
+          "required": ["metric", "operator", "value"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

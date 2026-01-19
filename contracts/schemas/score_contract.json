@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speakflow.dev/schemas/score_contract.json",
+  "title": "SpeakFlow Score Contract",
+  "description": "Canonical schema for session analysis results. All API responses and worker outputs must conform to this contract.",
+  "type": "object",
+  "required": ["session_id", "duration_sec", "metrics", "scores", "focus_metric", "flags"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the recording session"
+    },
+    "duration_sec": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total duration of the recording in seconds"
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Raw extracted metrics from audio analysis",
+      "required": ["wpm", "filler_per_min", "pause_events", "power_pauses", "pitch_variance", "volume_stability"],
+      "properties": {
+        "wpm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Words per minute (speaking rate)"
+        },
+        "filler_per_min": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Filler words (um, uh, like, you know) per minute"
+        },
+        "pause_events": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total count of pauses > 0.5s"
+        },
+        "power_pauses": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of intentional pauses (1-3s) for emphasis"
+        },
+        "pitch_variance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Standard deviation of pitch in Hz"
+        },
+        "volume_stability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Coefficient of variation for volume (0=stable, 1=erratic)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scores": {
+      "type": "object",
+      "description": "Computed scores (0-100) derived from metrics",
+      "required": ["pace", "fluency", "clarity", "vocal_variety", "overall"],
+      "properties": {
+        "pace": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Score for speaking pace (optimal ~150 WPM)"
+        },
+        "fluency": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Score based on filler word frequency"
+        },
+        "clarity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Score based on pause patterns and articulation"
+        },
+        "vocal_variety": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Score based on pitch and volume variation"
+        },
+        "overall": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Weighted composite score"
+        }
+      },
+      "additionalProperties": false
+    },
+    "focus_metric": {
+      "type": "string",
+      "enum": ["pace", "fluency", "clarity", "vocal_variety", "structure", "confidence"],
+      "description": "Primary area for improvement this session"
+    },
+    "flags": {
+      "type": "array",
+      "description": "Timestamped events of note (fillers, long pauses, etc.)",
+      "items": {
+        "type": "object",
+        "required": ["t_start", "t_end", "reason"],
+        "properties": {
+          "t_start": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Start time in seconds"
+          },
+          "t_end": {
+            "type": "number",
+            "minimum": 0,
+            "description": "End time in seconds"
+          },
+          "reason": {
+            "type": "string",
+            "enum": ["filler", "long_pause", "rush", "mumble", "power_pause"],
+            "description": "Type of flagged event"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

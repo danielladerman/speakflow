@@ -1,0 +1,35 @@
+{
+  "$schema": "../schemas/coaching_response.json",
+  "session_id": "550e8400-e29b-41d4-a716-446655440000",
+  "summary": "You delivered a well-structured 3-minute practice session with clear pacing. Your main opportunity is reducing filler words, which appeared 4.2 times per minute—mostly during transitions between your main points.",
+  "strengths": [
+    {
+      "area": "pace",
+      "observation": "Your 165 WPM speaking rate is within the optimal range, making you easy to follow without feeling rushed"
+    },
+    {
+      "area": "clarity",
+      "observation": "Your articulation was crisp with well-placed pauses, scoring 82 in clarity"
+    }
+  ],
+  "focus_area": {
+    "area": "fluency",
+    "current_score": 65,
+    "target_score": 75,
+    "observation": "You used filler words 4.2 times per minute, primarily 'um' when transitioning between ideas at 12.5s and 89.2s",
+    "impact": "Replacing fillers with brief pauses will make you sound more confident and polished"
+  },
+  "recommended_drills": [
+    {
+      "drill_id": "drill_fluency_silence",
+      "reason": "Your filler patterns suggest you're using 'um' to hold the floor—this drill trains you to embrace silence instead",
+      "priority": 1
+    },
+    {
+      "drill_id": "drill_clarity_power_pause",
+      "reason": "You already use power pauses effectively (3 detected)—building on this strength will naturally reduce fillers",
+      "priority": 2
+    }
+  ],
+  "next_session_goal": "Reduce filler words from 4.2 to under 3 per minute while maintaining your current pace"
+}

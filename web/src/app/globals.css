@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* SpeakFlow breathes with the user */
+    --breath-in-duration: 6s;
+    --breath-out-duration: 8s;
+  }
+
+  html {
+    /* Prevent jarring overscroll */
+    overscroll-behavior: none;
+  }
+
+  body {
+    @apply bg-cloud-50 text-cloud-800 antialiased;
+    /* Gentle, breathable feel */
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /* Remove harsh focus rings, use gentle glow instead */
+  *:focus {
+    @apply outline-none;
+  }
+
+  *:focus-visible {
+    @apply ring-2 ring-sage-300 ring-offset-2 ring-offset-cloud-50;
+  }
+}
+
+@layer components {
+  /* Glass-like surfaces for cards and overlays */
+  .surface-glass {
+    @apply bg-white/80 backdrop-blur-sm;
+  }
+
+  /* Soft shadow that doesn't feel heavy */
+  .shadow-soft {
+    box-shadow:
+      0 2px 8px -2px rgba(42, 48, 56, 0.04),
+      0 4px 16px -4px rgba(42, 48, 56, 0.06);
+  }
+
+  /* Elevated surface with more presence */
+  .shadow-elevated {
+    box-shadow:
+      0 4px 12px -4px rgba(42, 48, 56, 0.06),
+      0 8px 24px -8px rgba(42, 48, 56, 0.08);
+  }
+
+  /* Breathing animation for the breath circle */
+  .breath-circle {
+    @apply rounded-full transition-all ease-gentle;
+  }
+
+  .breath-circle.inhaling {
+    animation: breatheIn var(--breath-in-duration) ease-in-out forwards;
+  }
+
+  .breath-circle.exhaling {
+    animation: breatheOut var(--breath-out-duration) ease-in-out forwards;
+  }
+
+  /* Soft ring score - the gentle progress indicator */
+  .score-ring {
+    @apply transition-all duration-800 ease-gentle;
+    stroke-linecap: round;
+  }
+
+  /* Recording button - calm pulse, not urgent */
+  .record-button {
+    @apply transition-all duration-400 ease-gentle;
+  }
+
+  .record-button.recording {
+    @apply animate-pulse-soft;
+  }
+
+  /* Metric chips - whisper-soft data presentation */
+  .metric-chip {
+    @apply inline-flex items-center gap-2 px-4 py-2
+           rounded-full bg-cloud-100 text-cloud-700
+           transition-colors duration-300 ease-gentle;
+  }
+
+  /* Tab navigation - barely there until needed */
+  .tab-nav {
+    @apply flex gap-1 p-1 bg-cloud-100 rounded-full;
+  }
+
+  .tab-button {
+    @apply px-4 py-2 rounded-full text-sm font-medium
+           text-cloud-500 transition-all duration-300 ease-gentle;
+  }
+
+  .tab-button.active {
+    @apply bg-white text-cloud-800 shadow-soft;
+  }
+
+  /* Transcript view - clean reading experience */
+  .transcript-line {
+    @apply py-3 border-b border-cloud-100 last:border-0
+           transition-colors duration-200;
+  }
+
+  .transcript-line.highlighted {
+    @apply bg-warmth-50;
+  }
+
+  /* Processing state - calm, patient animation */
+  .processing-dot {
+    @apply w-2 h-2 rounded-full bg-sage-400;
+    animation: processingPulse 1.5s ease-in-out infinite;
+  }
+
+  .processing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .processing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes processingPulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+@layer utilities {
+  /* Safe area padding for mobile notches */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Gentle text rendering */
+  .text-gentle {
+    @apply text-cloud-600 leading-relaxed;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
