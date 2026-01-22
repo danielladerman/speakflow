@@ -61,7 +61,7 @@ export default function RegisterPage() {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Error message */}
           {displayError && (
-            <div className="p-4 bg-warmth-50 rounded-xl text-warmth-700 text-sm animate-fade-in">
+            <div className="p-4 bg-sage-50 rounded-xl text-sage-700 text-sm animate-fade-in">
               {displayError}
             </div>
           )}

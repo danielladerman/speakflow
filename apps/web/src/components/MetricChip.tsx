@@ -21,10 +21,10 @@ export const MetricChip = ({
 }: MetricChipProps) => {
   // Gentle indicator - no harsh colors
   const indicatorColor = useMemo(() => {
-    if (value >= 80) return 'bg-sage-400'
-    if (value >= 60) return 'bg-sage-300'
-    if (value >= 40) return 'bg-warmth-300'
-    return 'bg-cloud-300'
+    if (value >= 80) return 'bg-sage-200 text-sage-800'
+    if (value >= 60) return 'bg-sky-200 text-sky-800'
+    if (value >= 40) return 'bg-cloud-200 text-cloud-700'
+    return 'bg-cloud-100 text-cloud-600'
   }, [value])
 
   const isInteractive = Boolean(onClick)

@@ -28,9 +28,9 @@ export function OnboardingSlide({
       className={`absolute inset-0 flex flex-col items-center justify-center px-8
                   transition-all duration-600 ease-gentle
                   ${isActive
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-4 pointer-events-none'
-                  }`}
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
       aria-hidden={!isActive}
     >
       {/* Visual element */}
@@ -75,9 +75,9 @@ export function SlideIndicator({ total, current, onSelect }: SlideIndicatorProps
           onClick={() => onSelect?.(index)}
           className={`w-2 h-2 rounded-full transition-all duration-400 ease-gentle
                      ${current === index
-                       ? 'bg-sage-400 w-6'
-                       : 'bg-cloud-200 hover:bg-cloud-300'
-                     }`}
+              ? 'bg-sage-400 w-6'
+              : 'bg-cloud-200 hover:bg-cloud-300'
+            }`}
         />
       ))}
     </div>
@@ -177,8 +177,8 @@ export function HowItWorksVisual() {
 
       {/* Grow step */}
       <div className="flex flex-col items-center gap-2">
-        <div className="w-14 h-14 rounded-full bg-warmth-100 flex items-center justify-center">
-          <svg className="w-6 h-6 text-warmth-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <div className="w-14 h-14 rounded-full bg-sage-100 flex items-center justify-center">
+          <svg className="w-6 h-6 text-sage-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
           </svg>
         </div>

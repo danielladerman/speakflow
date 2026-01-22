@@ -16,10 +16,10 @@ type TranscriptViewProps = {
 
 // Map flag reasons to gentle visual indicators
 const FLAG_STYLES: Record<string, string> = {
-  filler: 'bg-warmth-100 text-warmth-700',
-  long_pause: 'text-cloud-400 italic',
+  filler: 'bg-cloud-200 text-cloud-700',
+  long_pause: 'text-sage-600 font-medium',
   power_pause: 'bg-sage-50 text-sage-700',
-  rush: 'text-warmth-600',
+  rush: 'text-cloud-600',
   mumble: 'text-cloud-400',
 }
 

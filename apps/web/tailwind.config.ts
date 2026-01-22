@@ -9,44 +9,45 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // SpeakFlow's calm, cloud-like palette
-        cloud: {
-          50: '#fafbfc',
-          100: '#f4f6f8',
-          200: '#e9ecf0',
-          300: '#d3d9e0',
-          400: '#b4bcc8',
-          500: '#8e99a8',
-          600: '#6b7684',
-          700: '#525c69',
-          800: '#3d4550',
-          900: '#2a3038',
+        // Primary: Pure white (use default white)
+        // Accents: Soft sky blues
+        sky: {
+          50: '#F5F9FD',
+          100: '#E8F4FD', // User specified
+          200: '#D0E4F5',
+          300: '#B8D4E8', // User specified
+          400: '#9BC3DE',
+          500: '#7FB3D3', // User specified
+          600: '#6492B0',
+          700: '#4A728D',
+          800: '#32536B',
+          900: '#1D3548',
         },
-        // Soft accent for progress and success - muted sage
+        // Warmth/Safe: Gentle sage greens
         sage: {
-          50: '#f6f8f6',
-          100: '#e8efe8',
-          200: '#d4e2d4',
-          300: '#b5cfb5',
-          400: '#8fb68f',
-          500: '#6b9a6b',
-          600: '#547d54',
-          700: '#446444',
-          800: '#395039',
-          900: '#304230',
+          50: '#F2F6F2',
+          100: '#E8F0E8', // User specified
+          200: '#D6E4D6',
+          300: '#C5D9C5', // User specified
+          400: '#A3C2A3',
+          500: '#82AB82',
+          600: '#648A64',
+          700: '#486848',
+          800: '#2E472E',
+          900: '#172617',
         },
-        // Warm highlight for gentle emphasis
-        warmth: {
-          50: '#fdfaf7',
-          100: '#faf4eb',
-          200: '#f5e8d5',
-          300: '#edd7b8',
-          400: '#e2c092',
-          500: '#d4a66b',
-          600: '#c28d50',
-          700: '#a27343',
-          800: '#835c3b',
-          900: '#6b4c33',
+        // Text/Cloud colors (neutrals, but cool toned)
+        cloud: {
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
+          900: '#0F172A',
         },
       },
       fontFamily: {
@@ -56,33 +57,35 @@ const config: Config = {
         'breathe-in': 'breatheIn 6s cubic-bezier(0.4, 0, 0.2, 1)',
         'breathe-out': 'breatheOut 8s cubic-bezier(0.4, 0, 0.2, 1)',
         'pulse-soft': 'pulseSoft 4s ease-in-out infinite',
-        'fade-in': 'fadeIn 0.6s ease-out',
-        'fade-in-delay': 'fadeIn 0.6s ease-out 0.2s both',
+        'fade-in': 'fadeIn 0.8s ease-out forwards',
+        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'slide-up': 'slideUp 0.5s ease-out',
-        'slide-up-delay-1': 'slideUp 0.5s ease-out 0.1s both',
-        'slide-up-delay-2': 'slideUp 0.5s ease-out 0.2s both',
-        'slide-up-delay-3': 'slideUp 0.5s ease-out 0.3s both',
         'scale-in': 'scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        'scale-in-delay': 'scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both',
+        'shimmer': 'shimmer 2.5s linear infinite',
+        'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {
         breatheIn: {
-          '0%': { transform: 'scale(0.7)', opacity: '0.5' },
-          '50%': { opacity: '0.8' },
+          '0%': { transform: 'scale(0.85)', opacity: '0.6' },
+          '50%': { opacity: '0.9' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
         breatheOut: {
           '0%': { transform: 'scale(1)', opacity: '1' },
-          '50%': { opacity: '0.8' },
-          '100%': { transform: 'scale(0.7)', opacity: '0.5' },
+          '50%': { opacity: '0.9' },
+          '100%': { transform: 'scale(0.85)', opacity: '0.6' },
         },
         pulseSoft: {
-          '0%, 100%': { opacity: '0.6', transform: 'scale(0.95)' },
-          '50%': { opacity: '1', transform: 'scale(1)' },
+          '0%, 100%': { opacity: '0.8', transform: 'scale(0.98)' },
+          '50%': { opacity: '1', transform: 'scale(1.02)' },
         },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         slideUp: {
           '0%': { opacity: '0', transform: 'translateY(16px)' },
@@ -92,14 +95,24 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'scale(0.9)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
+        shimmer: {
+          '0%': { backgroundPosition: '-1000px 0' },
+          '100%': { backgroundPosition: '1000px 0' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
       transitionDuration: {
         '400': '400ms',
         '600': '600ms',
         '800': '800ms',
+        '2000': '2000ms',
       },
       transitionTimingFunction: {
         'gentle': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        'spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
     },
   },

@@ -29,10 +29,10 @@ export const SoftRingScore = ({
 
   // Gentle color based on score - no harsh reds
   const strokeColor = useMemo(() => {
-    if (normalizedScore >= 80) return '#8fb68f' // sage-400
-    if (normalizedScore >= 60) return '#b5cfb5' // sage-300
-    if (normalizedScore >= 40) return '#e2c092' // warmth-400
-    return '#d3d9e0' // cloud-300
+    if (normalizedScore >= 80) return '#82AB82' // sage-500
+    if (normalizedScore >= 60) return '#7FB3D3' // sky-500
+    if (normalizedScore >= 40) return '#94A3B8' // cloud-400
+    return '#CBD5E1' // cloud-300
   }, [normalizedScore])
 
   return (

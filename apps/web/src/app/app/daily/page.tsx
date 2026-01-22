@@ -110,11 +110,11 @@ export default function DailyPage() {
               key={p}
               className={`w-2 h-2 rounded-full transition-colors duration-400
                          ${phase === p || (phase === 'processing' && p === 'results')
-                           ? 'bg-sage-400'
-                           : phase === 'entry' || index > getPhaseIndex(phase)
-                           ? 'bg-cloud-200'
-                           : 'bg-sage-300'
-                         }`}
+                  ? 'bg-sage-400'
+                  : phase === 'entry' || index > getPhaseIndex(phase)
+                    ? 'bg-cloud-200'
+                    : 'bg-sage-300'
+                }`}
               aria-hidden="true"
             />
           ))}
@@ -575,10 +575,10 @@ function CoachingPanel({ coaching }: CoachingPanelProps) {
     >
       {/* Focus area */}
       <div
-        className="bg-warmth-50 rounded-xl p-4 animate-slide-up"
+        className="bg-sage-50 rounded-xl p-4 animate-slide-up"
         style={{ animationFillMode: 'both' }}
       >
-        <p className="text-xs uppercase tracking-wide text-warmth-600 mb-2">
+        <p className="text-xs uppercase tracking-wide text-sage-600 mb-2">
           Area to explore
         </p>
         <p className="text-cloud-700 leading-relaxed">

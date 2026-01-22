@@ -261,9 +261,9 @@ export default function SessionPage({ params }: SessionPageProps) {
             {/* Next goal */}
             <div className="bg-sage-50 rounded-xl p-4">
               <p className="text-xs uppercase tracking-wide text-sage-600 mb-2">
-                Your next goal
+                Focus for next time
               </p>
-              <p className="text-cloud-700 leading-relaxed">
+              <p className="text-cloud-700">
                 {coaching.next_session_goal}
               </p>
             </div>

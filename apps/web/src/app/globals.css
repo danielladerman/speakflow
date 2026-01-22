@@ -15,9 +15,11 @@
   }
 
   body {
-    @apply bg-cloud-50 text-cloud-800 antialiased;
+    @apply bg-sky-50 text-cloud-800 antialiased;
     /* Gentle, breathable feel */
     font-feature-settings: 'rlig' 1, 'calt' 1;
+    /* Luxurious spacing */
+    line-height: 1.6;
   }
 
   /* Remove harsh focus rings, use gentle glow instead */
@@ -26,28 +28,28 @@
   }
 
   *:focus-visible {
-    @apply ring-2 ring-sage-300 ring-offset-2 ring-offset-cloud-50;
+    @apply ring-2 ring-sky-200 ring-offset-4 ring-offset-sky-50;
   }
 }
 
 @layer components {
-  /* Glass-like surfaces for cards and overlays */
+  /* Glass-like surfaces for cards and overlays - Weightless */
   .surface-glass {
-    @apply bg-white/80 backdrop-blur-sm;
+    @apply bg-white/70 backdrop-blur-md border border-white/40;
   }
 
-  /* Soft shadow that doesn't feel heavy */
+  /* Soft shadow that doesn't feel heavy - Floating */
   .shadow-soft {
     box-shadow:
-      0 2px 8px -2px rgba(42, 48, 56, 0.04),
-      0 4px 16px -4px rgba(42, 48, 56, 0.06);
+      0 4px 20px -2px rgba(29, 53, 72, 0.02), /* Cloud-900 based but very transparent */
+      0 8px 32px -4px rgba(29, 53, 72, 0.04);
   }
 
-  /* Elevated surface with more presence */
+  /* Elevated surface with more presence but still light */
   .shadow-elevated {
     box-shadow:
-      0 4px 12px -4px rgba(42, 48, 56, 0.06),
-      0 8px 24px -8px rgba(42, 48, 56, 0.08);
+      0 12px 36px -4px rgba(29, 53, 72, 0.06),
+      0 16px 48px -8px rgba(29, 53, 72, 0.08);
   }
 
   /* Breathing animation for the breath circle */
@@ -106,7 +108,7 @@
   }
 
   .transcript-line.highlighted {
-    @apply bg-warmth-50;
+    @apply bg-sage-50;
   }
 
   /* Processing state - calm, patient animation */
