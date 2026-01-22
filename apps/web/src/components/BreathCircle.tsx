@@ -35,6 +35,7 @@ export const BreathCircle = ({
   const [phase, setPhase] = useState<BreathPhase>('inhale')
   const [cycleCount, setCycleCount] = useState(0)
   const [scale, setScale] = useState(0.7)
+  const [secondsRemaining, setSecondsRemaining] = useState(inhaleSeconds)
 
   const handlePhaseTransition = useCallback(() => {
     if (!isActive) return
@@ -62,17 +63,30 @@ export const BreathCircle = ({
       setPhase('inhale')
       setCycleCount(0)
       setScale(0.7)
+      setSecondsRemaining(inhaleSeconds)
       return
     }
 
     // Start with inhale
     setScale(1)
-
     const duration = phase === 'inhale' ? inhaleSeconds : exhaleSeconds
+    setSecondsRemaining(duration)
+
     const timer = setTimeout(handlePhaseTransition, duration * 1000)
 
     return () => clearTimeout(timer)
   }, [isActive, phase, inhaleSeconds, exhaleSeconds, handlePhaseTransition])
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (!isActive) return
+
+    const interval = setInterval(() => {
+      setSecondsRemaining((prev) => (prev > 1 ? prev - 1 : prev))
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [isActive, phase])
 
   const transitionDuration = phase === 'inhale' ? inhaleSeconds : exhaleSeconds
   // Refined easing: gentle start, smooth middle, soft landing
@@ -147,7 +161,7 @@ export const BreathCircle = ({
       {/* Phase instruction - gentle, guiding text */}
       <div className="text-center">
         <p
-          className="text-xl font-medium text-cloud-700 mb-2
+          className="text-xl font-medium text-cloud-700 mb-1
                      transition-all duration-500 ease-gentle"
           style={{
             opacity: isActive ? 1 : 0.6,
@@ -155,6 +169,12 @@ export const BreathCircle = ({
         >
           {PHASE_LABELS[phase]}
         </p>
+        {/* Seconds countdown */}
+        {isActive && (
+          <p className="text-3xl font-light text-sage-500 mb-2 tabular-nums">
+            {secondsRemaining}
+          </p>
+        )}
         {cycles > 0 && (
           <p className="text-sm text-cloud-400 transition-opacity duration-300">
             {cycleCount + 1} of {cycles}

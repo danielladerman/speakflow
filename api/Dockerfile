@@ -18,6 +18,8 @@ RUN pip install --no-cache-dir ./contracts
 # Copy API package
 COPY api/pyproject.toml api/
 COPY api/app api/app/
+COPY api/alembic.ini api/
+COPY api/alembic api/alembic/
 
 # Install API dependencies
 RUN pip install --no-cache-dir ./api

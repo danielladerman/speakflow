@@ -1,4 +1,4 @@
-// Types conforming to SpeakFlow Score Contract and Drill Schema
+// Shared types for SpeakFlow - used by web and mobile apps
 
 export interface Metrics {
   wpm: number
@@ -104,4 +104,33 @@ export interface TranscriptSegment {
   start: number
   end: number
   words: TranscriptWord[]
+}
+
+// Session types
+export type SessionStatus = 'pending' | 'processing' | 'completed' | 'failed'
+
+export interface Session {
+  id: string
+  user_id?: string
+  status: SessionStatus
+  duration_sec?: number
+  audio_url?: string
+  score_contract?: ScoreContract
+  coaching_response?: CoachingResponse
+  transcript?: TranscriptSegment[]
+  error_message?: string
+  created_at?: string
+  completed_at?: string
+}
+
+// Auth types
+export interface User {
+  id: string
+  email: string
+  display_name?: string
+}
+
+export interface AuthTokens {
+  access_token: string
+  token_type: string
 }

@@ -1,0 +1,23 @@
+{
+  "name": "speakflow",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace=@speakflow/web",
+    "dev:mobile": "npm run start --workspace=@speakflow/mobile",
+    "dev": "npm run dev:web",
+    "build:web": "npm run build --workspace=@speakflow/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

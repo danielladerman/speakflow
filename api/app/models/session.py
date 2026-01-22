@@ -9,7 +9,7 @@ from datetime import datetime
 from typing import Any
 from uuid import uuid4
 
-from sqlalchemy import Column, DateTime, Enum, Float, String, Text
+from sqlalchemy import Column, DateTime, Enum, Float, ForeignKey, String, Text
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 
 from ..core.database import Base
@@ -42,6 +42,7 @@ class Session(Base):
     # User reference (for future auth)
     user_id = Column(
         UUID(as_uuid=True),
+        ForeignKey("users.id"),
         nullable=True,
         index=True,
     )

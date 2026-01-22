@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "SpeakFlow",
+    "slug": "speakflow",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "speakflow",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fafbfc"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.speakflow.app",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "SpeakFlow needs microphone access to record your speech for analysis."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#fafbfc"
+      },
+      "package": "com.speakflow.app",
+      "permissions": ["RECORD_AUDIO"]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      ["expo-router", { "root": "./app" }],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "SpeakFlow needs microphone access to record your speech."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

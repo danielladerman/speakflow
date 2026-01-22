@@ -99,7 +99,7 @@ const config: Config = {
         '800': '800ms',
       },
       transitionTimingFunction: {
-        'ease-gentle': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        'gentle': 'cubic-bezier(0.4, 0, 0.2, 1)',
       },
     },
   },
